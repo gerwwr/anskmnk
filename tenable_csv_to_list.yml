@@ -1,0 +1,43 @@
+---
+- name: Extract package names after "Should be:" from a CSV file
+  hosts: localhost
+  gather_facts: no
+  become: true
+  vars:
+    input_csv: "./testtenable.csv"  # Input file
+    output_file: "./final1.txt"      # Output file
+    cleaner_pattern: "Should be\\s*:\\s*(\\S+)"    # Regex to match "Should be : <package>"
+    should_remover: "^Should be\\s*:\\s*"
+
+  tasks:
+    - name: Read the CSV file
+      command: cat {{ input_csv }}
+      register: csv_content
+
+    - name: Take only lines starting with "Should be :"
+      set_fact:
+        should_names: >-
+          {{ csv_content.stdout_lines | map('regex_search', cleaner_pattern) | select('string') | list }}
+          
+    - name: Remove "Should be :" and save only package names
+      set_fact:
+        cleaned_lines: >-
+          {{ should_names | map('regex_replace', should_remover, '') | list }}
+          
+    - name: Parse and clean the list of packages
+      set_fact:
+        package_list: "{{ cleaned_lines | map('regex_replace', '-[0-9]+.*', '') | unique }}"
+          
+    - name: Write package names to the output file
+      copy:
+        content: "{{ package_list | join('\n') }}"
+        dest: "{{ output_file }}"
+
+    - name: Display the extracted package names
+      debug:
+        msg: "{{ package_list }}"
+
+    - name: Install packages
+      dnf:
+        name: "{{ package_list }}"
+        state: present
