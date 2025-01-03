@@ -1,0 +1,19 @@
+--- 
+    - name: Install Required Updates
+      win_updates:
+        category_names:
+          - Application
+          - Connectors
+          - CriticalUpdates
+          - DefinitionUpdates
+          - DeveloperKits
+          - FeaturePacks
+          - Guidance
+          - SecurityUpdates
+          - ServicePacks
+          - Tools
+          - UpdateRollups
+          - Updates
+          - Upgrades
+        whitelist: "{{ hosts_list_with_kb_to_patch[item].host[1:] }}"
+        reboot: yes
