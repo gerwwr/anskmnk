@@ -73,9 +73,12 @@
     create: yes
     line: "{{ report_content.content }}"
 
+- name: Install dos2unix
+  command: "dnf install -y dos2unix"
+
 - name: Convert line breaks in csv file from DOS to Unix format
   command: "dos2unix /tmp/scan-{{ scan_id }}-report.csv"
-
+  
 - name: Change 'Plugin ID' Key to 'PluginOutput'
   replace:
     path: "/tmp/scan-{{ scan_id }}-report.csv"
