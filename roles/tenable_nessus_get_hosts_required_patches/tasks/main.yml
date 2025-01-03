@@ -95,7 +95,7 @@
     replace: 'PluginOutput'
 
 - name: Read Report csv
-  read_csv:
+  community.general.read_csv:
     path: "/tmp/scan-{{ scan_id }}-report.csv"
     fieldnames: PluginID,CVE,CVSS,Risk,Host,Protocol,Port,Name,Synopsis,Description,Solution,SeeAlso,PluginOutput
     delimiter: ','
