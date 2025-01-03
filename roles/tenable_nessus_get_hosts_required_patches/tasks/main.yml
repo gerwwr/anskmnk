@@ -79,9 +79,7 @@
    # state: present
 
 - name: Convert line breaks in csv file from DOS to Unix format
-  shell: "dos2unix {{ csv_path }}"
-  vars:
-    csv_path: "/tmp/scan-{{ scan_id }}-report.csv"
+  shell: "sed -i 's/\r$//' /tmp/scan-{{ scan_id }}-report.csv"
     
 - name: Change 'Plugin ID' Key to 'PluginOutput'
   replace:
