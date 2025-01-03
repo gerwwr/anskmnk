@@ -79,8 +79,6 @@
    # state: present
 - name: Convert DOS-formatted CSV to UNIX format
   command: sed -i 's/\r$//' /tmp/scan-{{ scan_id }}-report.csv
-    args:
-     warn: no
      
 #- name: Convert line breaks in csv file from DOS to Unix format
 #  shell: "sed -i 's/\r$//' /tmp/scan-{{ scan_id }}-report.csv"
