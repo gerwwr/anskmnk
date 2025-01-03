@@ -74,7 +74,7 @@
     line: "{{ report_content.content }}"
     
 - name: install dos2unix
-  dnf: 
+  yum: 
     name: dos2unix
     state: present
 
