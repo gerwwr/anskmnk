@@ -19,7 +19,7 @@
   uri:
     url: "{{ nessus_host }}/scans/{{ scan_id }}"
     headers:
-      X-ApiKeys: "accessKey={{ access_key }}; secretKey={{ secret_key }}"
+      X-ApiKeys: "accessKey={{ access_key }};secretKey={{ secret_key }}"
     method: GET
     validate_certs: no
     return_content: yes
@@ -32,7 +32,7 @@
   uri:
     url: "{{ nessus_host }}/scans/{{ scan_id }}/export"
     headers:
-      X-ApiKeys: "accessKey={{ access_key }}; secretKey={{ secret_key }}"
+      X-ApiKeys: "accessKey={{ access_key }};secretKey={{ secret_key }}"
     method: POST
     body: "format=csv"
     validate_certs: no
@@ -43,7 +43,7 @@
   uri:
     url: "{{ nessus_host }}/scans/{{ scan_id }}/export/{{ generate_scan_report.json.file }}/status"
     headers:
-      X-ApiKeys: "accessKey={{ access_key }}; secretKey={{ secret_key }}"
+      X-ApiKeys: "accessKey={{ access_key }};secretKey={{ secret_key }}"
     method: GET
     validate_certs: no
     return_content: yes
@@ -56,7 +56,7 @@
   uri:
     url: "{{ nessus_host }}/scans/{{ scan_id }}/export/{{ generate_scan_report.json.file }}/download"
     headers:
-      X-ApiKeys: "accessKey={{ access_key }}; secretKey={{ secret_key }}"
+      X-ApiKeys: "accessKey={{ access_key }};secretKey={{ secret_key }}"
     method: GET
     validate_certs: no
     return_content: yes
