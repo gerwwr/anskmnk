@@ -72,6 +72,9 @@
     path: "/tmp/scan-{{ scan_id }}-report.csv"
     create: yes
     line: "{{ report_content.content }}"
+    
+- name: check tmp
+  command: "ls /tmp/"
 
 - name: Convert line breaks in csv file from DOS to Unix format
   command: "dos2unix /tmp/scan-{{ scan_id }}-report.csv"
