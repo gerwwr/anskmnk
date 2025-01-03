@@ -74,7 +74,9 @@
     line: "{{ report_content.content }}"
     
 - name: install dos2unix
-  shell: "yum install -y dos2unix"
+  dnf: 
+    name: dos2unix
+    state: present
 
 - name: Convert line breaks in csv file from DOS to Unix format
   shell: "dos2unix /tmp/scan-{{ scan_id }}-report.csv"
