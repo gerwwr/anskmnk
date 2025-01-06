@@ -1,6 +1,6 @@
 ---
 - name: Install Windows Updates
-  hosts: windows_server_2016
+  hosts: all
   gather_facts: true
 
   roles:
